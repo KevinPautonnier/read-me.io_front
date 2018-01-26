@@ -48,17 +48,12 @@ export class AppComponent implements OnInit {
 
   submitButton(template: any, extension: any) {
     console.log(template, extension);
-
-    if(template == undefined && extension == undefined)
-    {
-      this.readMe.getReadme().subscribe( ReadMe => {
-        this.readmeFile = ReadMe;
-      });
-    }
-    else
-    {
-      
-    }
+  
+    console.log(extension);
+    this.readMe.getReadme(template, extension).subscribe( readme => {
+      this.readmeFile = readme;
+    });
+    
   }
 
   ngOnInit() {

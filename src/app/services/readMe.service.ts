@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ReadMe {
 
-  private url = 'http://localhost:3000/api';
+  private url = 'http://www.read-me.io/api';
 
   constructor(private http: HttpClient) {
   }
@@ -31,19 +31,18 @@ export class ReadMe {
 
     var request = this.url + "/generate?";
 
-    if(template != undefined) {
-      request += "template =" + template + "&";
+    if(template != "") {
+      request += "template=" + template + "&";
     }
-    
+
     if(extension != undefined) {
-      request += "extension =" + extension;
+      request += "extension=" + extension;
     }
     else {
       request = request.substring(0, request.length-1);
     }
     
-    
     return this.http.get(request)
-      .map((res:any) => res.result )
+      .map((res:any) => res.file);
   }
 }
