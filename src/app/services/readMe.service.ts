@@ -27,8 +27,22 @@ export class ReadMe {
       .map((res: any) => res.results);
   }
 
-  getReadme() {
-    const request = this.url + "/generate";
+  getReadme(template, extension) {
+
+    var request = this.url + "/generate?";
+
+    if(template != undefined) {
+      request += "template =" + template + "&";
+    }
+    
+    if(extension != undefined) {
+      request += "extension =" + extension;
+    }
+    else {
+      request = request.substring(0, request.length-1);
+    }
+    
+    
     return this.http.get(request)
       .map((res:any) => res.result )
   }
